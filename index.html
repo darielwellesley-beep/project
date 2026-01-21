@@ -101,17 +101,19 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
             margin: 40px auto 60px;
-            max-width: 1000px;
+            max-width: 1100px;
         }
 
         .price-card {
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 30px 20px;
+            padding: 20px;
             transition: 0.4s;
             position: relative;
             backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
         }
 
         .price-card:hover {
@@ -125,16 +127,26 @@
             background: rgba(25, 35, 60, 0.8);
         }
 
+        /* จัดการรูปภาพในป้ายราคา */
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         .price-card h3 {
             font-family: var(--accent-font);
             font-size: 1.2rem;
-            margin-bottom: 15px;
+            margin: 10px 0;
             color: #d1d9e6;
         }
 
         .price-amount {
             font-family: var(--accent-font);
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: bold;
             margin-bottom: 10px;
             display: block;
@@ -145,23 +157,25 @@
         .price-features {
             list-style: none;
             padding: 0;
-            margin: 20px 0;
+            margin: 15px 0;
             text-align: left;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #d1d9e6;
+            flex-grow: 1; /* ดันปุ่มลงไปข้างล่างสุด */
         }
 
         .price-features li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
         }
 
-        .price-features li i { margin-right: 10px; color: #00d4ff; }
+        .price-features li i { margin-right: 10px; color: #00d4ff; width: 15px; text-align: center; }
 
         .buy-link {
             text-decoration: none;
             display: block;
+            margin-top: 15px;
         }
 
         .buy-btn {
@@ -216,7 +230,7 @@
         .discord-text p { margin: 5px 0 0 0; color: var(--text-sub); font-size: 0.9rem; }
 
         @media (max-width: 900px) {
-            .pricing-section { grid-template-columns: repeat(2, 1fr); max-width: 700px; }
+            .pricing-section { grid-template-columns: repeat(2, 1fr); max-width: 750px; }
         }
 
         @media (max-width: 600px) {
@@ -240,6 +254,7 @@
 
         <div class="pricing-section">
             <div class="price-card">
+                <img src="https://img2.pic.in.th/Gemini_Generated_Image_ri2md2ri2md2ri2m.png" alt="Starter" class="card-img">
                 <h3>STARTER</h3>
                 <div class="price-amount">500<span>฿</span></div>
                 <ul class="price-features">
@@ -253,7 +268,8 @@
             </div>
 
             <div class="price-card featured">
-                <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #000; padding: 2px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; font-family: var(--accent-font);">RECOMMENDED</div>
+                <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #000; padding: 2px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; font-family: var(--accent-font); z-index: 5;">RECOMMENDED</div>
+                <img src="https://img5.pic.in.th/file/secure-sv1/Gemini_Generated_Image_a2rtqra2rtqra2rt.png" alt="Elite" class="card-img">
                 <h3>ELITE</h3>
                 <div class="price-amount" style="color: var(--gold);">799<span>฿</span></div>
                 <ul class="price-features">
@@ -269,6 +285,7 @@
             </div>
 
             <div class="price-card">
+                <img src="https://img2.pic.in.th/Gemini_Generated_Image_uzan1quzan1quzan.png" alt="Ultimate" class="card-img">
                 <h3>ULTIMATE</h3>
                 <div class="price-amount">1200<span>฿</span></div>
                 <ul class="price-features">
