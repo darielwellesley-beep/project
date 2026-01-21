@@ -9,7 +9,6 @@
 
     <style>
         :root {
-            /* ปรับเป็นสีกรมท่า */
             --bg-color: #00122e; 
             --card-bg: rgba(15, 25, 45, 0.7);
             --text-main: #ffffff;
@@ -38,20 +37,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* สร้างลักษณะฝ้าขาวจางๆ */
             background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 80%);
-            backdrop-filter: blur(8px); /* ทำให้หน้าจอมีลักษณะเบลอเหมือนกระจกฝ้า */
+            backdrop-filter: blur(8px);
             z-index: -1;
         }
 
-        /* --- เอฟเฟกต์ไอน้ำเคลื่อนที่จางๆ --- */
         .steam-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 200%;
             height: 200%;
-            background-image: url('https://www.transparenttextures.com/patterns/p6.png'); /* ลายจุดเล็กๆ แทนหยดน้ำจางๆ */
+            background-image: url('https://www.transparenttextures.com/patterns/p6.png');
             opacity: 0.1;
             z-index: -1;
             animation: steamMove 60s linear infinite;
@@ -114,7 +111,7 @@
             padding: 30px 20px;
             transition: 0.4s;
             position: relative;
-            backdrop-filter: blur(15px); /* เน้นกระจกฝ้าที่ตัวการ์ด */
+            backdrop-filter: blur(15px);
         }
 
         .price-card:hover {
@@ -229,7 +226,7 @@
     <div class="steam-overlay"></div>
 
     <div class="navbar">
-        <a href="" class="home-btn">HOME</a>
+        <a href="#" class="home-btn">HOME</a>
     </div>
 
     <div class="container">
@@ -241,10 +238,10 @@
                 <div class="price-amount">500<span>฿</span></div>
                 <ul class="price-features">
                     <li><i class="fas fa-snowflake"></i> หน้า home</li>
-                    <li><i class="fas fa-snowflake"></i> หน้าlistname</li>
+                    <li><i class="fas fa-snowflake"></i> หน้า listname</li>
                     <li><i class="fas fa-snowflake"></i> ใส่เพลงหน้าเว็บ</li>
                 </ul>
-                <button class="buy-btn">เลือกแผนนี้</button>
+                <button class="buy-btn" onclick="orderAlert()">เลือกแผนนี้</button>
             </div>
 
             <div class="price-card featured">
@@ -258,23 +255,19 @@
                     <li><i class="fas fa-snowflake"></i> BG ขยับได้</li>
                     <li><i class="fas fa-snowflake"></i> ใส่เพลงได้</li>
                 </ul>
-                <button class="buy-btn">เลือกแผนนี้</button>
+                <button class="buy-btn" onclick="orderAlert()">เลือกแผนนี้</button>
             </div>
 
             <div class="price-card">
                 <h3>ULTIMATE</h3>
                 <div class="price-amount">1200<span>฿</span></div>
                 <ul class="price-features">
-                    <li><i class="fas fa-check"></i> ออกแบบ UI ให้ฟรี</li>
-                    <li><i class="fas fa-check"></i> ใส่รูป BG เองได้</li>
-                    <li><i class="fas fa-check"></i> สิทธิ์เข้าร่วมกิจกรรมพิเศษ</li>
-                    <li><i class="fas fa-check"></i> BG ขยับได้</li>
-                    <li><i class="fas fa-check"></i> ใส่เพลงได้</li>
-                    <li><i class="fas fa-check"></i> ทุกอย่างใน Elite</li>
-                    <li><i class="fas fa-check"></i> บริการ VIP ส่วนตัว</li>
-                    <li><i class="fas fa-check"></i> โดเมน .xyz </li>
+                    <li><i class="fas fa-snowflake"></i> ออกแบบ UI ให้ฟรี</li>
+                    <li><i class="fas fa-snowflake"></i> ทุกอย่างใน Elite</li>
+                    <li><i class="fas fa-snowflake"></i> บริการ VIP ส่วนตัว</li>
+                    <li><i class="fas fa-snowflake"></i> โดเมน .xyz </li>
                 </ul>
-                <button class="buy-btn">เลือกแผนนี้</button>
+                <button class="buy-btn" onclick="orderAlert()">เลือกแผนนี้</button>
             </div>
         </div>
 
@@ -288,6 +281,12 @@
             </a>
         </div>
     </div>
+
+    <script>
+        function orderAlert() {
+            alert("ติดต่อสั่งทำเว็บได้ที่ Ticket");
+        }
+    </script>
 
 </body>
 </html>
