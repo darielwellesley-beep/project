@@ -159,6 +159,11 @@
 
         .price-features li i { margin-right: 10px; color: #00d4ff; }
 
+        .buy-link {
+            text-decoration: none;
+            display: block;
+        }
+
         .buy-btn {
             background: rgba(255, 255, 255, 0.9);
             color: #000;
@@ -170,6 +175,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            text-align: center;
         }
 
         .price-card.featured .buy-btn { background: var(--gold); }
@@ -241,7 +247,9 @@
                     <li><i class="fas fa-snowflake"></i> หน้า listname</li>
                     <li><i class="fas fa-snowflake"></i> ใส่เพลงหน้าเว็บ</li>
                 </ul>
-                <button class="buy-btn" onclick="orderAlert()">เลือกแผนนี้</button>
+                <a href="https://discord.com/invite/PSzDAST75x" target="_blank" class="buy-link">
+                    <button class="buy-btn">เลือกแผนนี้</button>
+                </a>
             </div>
 
             <div class="price-card featured">
@@ -255,7 +263,9 @@
                     <li><i class="fas fa-snowflake"></i> BG ขยับได้</li>
                     <li><i class="fas fa-snowflake"></i> ใส่เพลงได้</li>
                 </ul>
-                <button class="buy-btn" onclick="orderAlert()">เลือกแผนนี้</button>
+                <a href="https://discord.com/invite/PSzDAST75x" target="_blank" class="buy-link">
+                    <button class="buy-btn">เลือกแผนนี้</button>
+                </a>
             </div>
 
             <div class="price-card">
@@ -271,7 +281,9 @@
                     <li><i class="fas fa-check"></i> บริการ VIP ส่วนตัว</li>
                     <li><i class="fas fa-check"></i> โดเมน .xyz </li>
                 </ul>
-                <button class="buy-btn" onclick="orderAlert()">เลือกแผนนี้</button>
+                <a href="https://discord.com/invite/PSzDAST75x" target="_blank" class="buy-link">
+                    <button class="buy-btn">เลือกแผนนี้</button>
+                </a>
             </div>
         </div>
 
@@ -285,12 +297,6 @@
             </a>
         </div>
     </div>
-
-    <script>
-        function orderAlert() {
-            alert("ติดต่อสั่งทำเว็บได้ที่ Ticket");
-        }
-    </script>
 
 </body>
 </html>
