@@ -9,10 +9,11 @@
 
     <style>
         :root {
-            --bg-color: #050505;
-            --card-bg: #0f0f0f;
+            /* ปรับเป็นสีกรมท่า */
+            --bg-color: #00122e; 
+            --card-bg: rgba(15, 25, 45, 0.7);
             --text-main: #ffffff;
-            --text-sub: #a0a0a0;
+            --text-sub: #b0c4de;
             --accent-font: 'Orbitron', sans-serif;
             --gold: #ffd700;
             --discord-color: #5865F2;
@@ -24,23 +25,48 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 10s linear infinite;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 50px 50px; }
+        /* --- Layer ไอน้ำ (Steam/Fog Effect) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* สร้างลักษณะฝ้าขาวจางๆ */
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 80%);
+            backdrop-filter: blur(8px); /* ทำให้หน้าจอมีลักษณะเบลอเหมือนกระจกฝ้า */
+            z-index: -1;
         }
 
-        .navbar { padding: 20px; }
+        /* --- เอฟเฟกต์ไอน้ำเคลื่อนที่จางๆ --- */
+        .steam-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background-image: url('https://www.transparenttextures.com/patterns/p6.png'); /* ลายจุดเล็กๆ แทนหยดน้ำจางๆ */
+            opacity: 0.1;
+            z-index: -1;
+            animation: steamMove 60s linear infinite;
+        }
+
+        @keyframes steamMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50px, -50px); }
+        }
+
+        .navbar { padding: 20px; position: relative; z-index: 10; }
         
         .home-btn {
-            background: #111;
-            border: 1px solid #333;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #444;
             color: white;
             padding: 10px 20px;
             text-decoration: none;
@@ -59,6 +85,8 @@
             margin: 0 auto;
             padding: 20px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         h1.main-title {
@@ -67,7 +95,7 @@
             margin-bottom: 40px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+            text-shadow: 0 0 15px rgba(255,255,255,0.2);
         }
 
         /* --- Pricing Cards --- */
@@ -80,31 +108,31 @@
         }
 
         .price-card {
-            background: rgba(15, 15, 15, 0.8);
-            border: 1px solid #333;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 30px 20px;
             transition: 0.4s;
             position: relative;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(15px); /* เน้นกระจกฝ้าที่ตัวการ์ด */
         }
 
         .price-card:hover {
-            border-color: var(--text-main);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .price-card.featured {
             border-color: var(--gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+            background: rgba(25, 35, 60, 0.8);
         }
 
         .price-card h3 {
             font-family: var(--accent-font);
             font-size: 1.2rem;
             margin-bottom: 15px;
-            color: var(--text-sub);
+            color: #d1d9e6;
         }
 
         .price-amount {
@@ -123,7 +151,7 @@
             margin: 20px 0;
             text-align: left;
             font-size: 0.9rem;
-            color: var(--text-sub);
+            color: #d1d9e6;
         }
 
         .price-features li {
@@ -132,10 +160,10 @@
             align-items: center;
         }
 
-        .price-features li i { margin-right: 10px; color: #4caf50; }
+        .price-features li i { margin-right: 10px; color: #00d4ff; }
 
         .buy-btn {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.9);
             color: #000;
             border: none;
             padding: 12px 25px;
@@ -159,9 +187,9 @@
         }
 
         .discord-card {
-            background: #111;
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--discord-color);
-            padding: 30px;
+            padding: 25px;
             border-radius: 15px;
             text-decoration: none;
             color: white;
@@ -171,38 +199,19 @@
             transition: 0.3s;
             max-width: 500px;
             width: 100%;
-            box-shadow: 0 0 15px rgba(88, 101, 242, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .discord-card:hover {
-            transform: translateY(-5px);
-            background: #1a1a1a;
-            box-shadow: 0 0 30px rgba(88, 101, 242, 0.4);
+            transform: scale(1.02);
+            background: rgba(88, 101, 242, 0.2);
         }
 
-        .discord-icon {
-            font-size: 3rem;
-            color: var(--discord-color);
-        }
+        .discord-icon { font-size: 3rem; color: var(--discord-color); }
+        .discord-text { text-align: left; }
+        .discord-text span { display: block; font-family: var(--accent-font); font-size: 1.5rem; font-weight: bold; }
+        .discord-text p { margin: 5px 0 0 0; color: var(--text-sub); font-size: 0.9rem; }
 
-        .discord-text {
-            text-align: left;
-        }
-
-        .discord-text span {
-            display: block;
-            font-family: var(--accent-font);
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .discord-text p {
-            margin: 5px 0 0 0;
-            color: var(--text-sub);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
         @media (max-width: 900px) {
             .pricing-section { grid-template-columns: repeat(2, 1fr); max-width: 700px; }
         }
@@ -217,6 +226,8 @@
 </head>
 <body>
 
+    <div class="steam-overlay"></div>
+
     <div class="navbar">
         <a href="" class="home-btn">HOME</a>
     </div>
@@ -229,9 +240,9 @@
                 <h3>STARTER</h3>
                 <div class="price-amount">500<span>฿</span></div>
                 <ul class="price-features">
-                    <li><i class="fas fa-check"></i> หน้า home</li>
-                    <li><i class="fas fa-check"></i> หน้าlistname</li>
-                    <li><i class="fas fa-check"></i> ใส่เพลงหน้าเว็บ</li>
+                    <li><i class="fas fa-snowflake"></i> หน้า home</li>
+                    <li><i class="fas fa-snowflake"></i> หน้าlistname</li>
+                    <li><i class="fas fa-snowflake"></i> ใส่เพลงหน้าเว็บ</li>
                 </ul>
                 <button class="buy-btn">เลือกแผนนี้</button>
             </div>
@@ -241,11 +252,11 @@
                 <h3>ELITE</h3>
                 <div class="price-amount" style="color: var(--gold);">799<span>฿</span></div>
                 <ul class="price-features">
-                    <li><i class="fas fa-check"></i> ออกแบบ UI ให้ฟรี</li>
-                    <li><i class="fas fa-check"></i> ใส่รูป BG เองได้</li>
-                    <li><i class="fas fa-check"></i> สิทธิ์เข้าร่วมกิจกรรมพิเศษ</li>
-                    <li><i class="fas fa-check"></i> BG ขยับได้</li>
-                    <li><i class="fas fa-check"></i> ใส่เพลงได้</li>
+                    <li><i class="fas fa-snowflake"></i> ออกแบบ UI ให้ฟรี</li>
+                    <li><i class="fas fa-snowflake"></i> ใส่รูป BG เองได้</li>
+                    <li><i class="fas fa-snowflake"></i> สิทธิ์เข้าร่วมกิจกรรมพิเศษ</li>
+                    <li><i class="fas fa-snowflake"></i> BG ขยับได้</li>
+                    <li><i class="fas fa-snowflake"></i> ใส่เพลงได้</li>
                 </ul>
                 <button class="buy-btn">เลือกแผนนี้</button>
             </div>
@@ -254,14 +265,10 @@
                 <h3>ULTIMATE</h3>
                 <div class="price-amount">1200<span>฿</span></div>
                 <ul class="price-features">
-                    <li><i class="fas fa-check"></i> ออกแบบ UI ให้ฟรี</li>
-                    <li><i class="fas fa-check"></i> ใส่รูป BG เองได้</li>
-                    <li><i class="fas fa-check"></i> สิทธิ์เข้าร่วมกิจกรรมพิเศษ</li>
-                    <li><i class="fas fa-check"></i> BG ขยับได้</li>
-                    <li><i class="fas fa-check"></i> ใส่เพลงได้</li>
-                    <li><i class="fas fa-check"></i> ทุกอย่างใน Elite</li>
-                    <li><i class="fas fa-check"></i> บริการ VIP ส่วนตัว</li>
-                    <li><i class="fas fa-check"></i> โดเมน .xyz </li>
+                    <li><i class="fas fa-snowflake"></i> ออกแบบ UI ให้ฟรี</li>
+                    <li><i class="fas fa-snowflake"></i> ทุกอย่างใน Elite</li>
+                    <li><i class="fas fa-snowflake"></i> บริการ VIP ส่วนตัว</li>
+                    <li><i class="fas fa-snowflake"></i> โดเมน .xyz </li>
                 </ul>
                 <button class="buy-btn">เลือกแผนนี้</button>
             </div>
@@ -276,7 +283,6 @@
                 </div>
             </a>
         </div>
-
     </div>
 
 </body>
